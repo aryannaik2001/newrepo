@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import urllib.request
 import io
-# import transformers
+import transformers
 import tensorflow as tf
 import nltk
 import numpy as np
