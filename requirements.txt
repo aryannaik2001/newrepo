@@ -1,2 +1,14 @@
-transformers==4.38.1
+streamlit
+pandas
+numpy
+urllib
+io
+transformers
 tensorflow
+nltk
+matplotlib
+seaborn
+sklearn
+tqdm
+rake_nltk
+gensim
