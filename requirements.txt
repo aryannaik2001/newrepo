@@ -11,4 +11,3 @@ streamlit
 gensim
 rake_nltk
 vaderSentiment
-sklearn
