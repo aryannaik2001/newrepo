@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import urllib.request
 import io
-!pip install transformers
+pip install transformers
 import transformers rake-nltk 
 import tensorflow as tf
 import nltk
