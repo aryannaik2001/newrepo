@@ -1,7 +1,7 @@
 transformers==4.38.1
 tensorflow
 pandas
-urllib3
+urllib
 nltk
 numpy
 matplotlib
