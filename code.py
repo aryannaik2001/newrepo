@@ -115,11 +115,12 @@ def topic_modelling():
     # Build the LDA model
     lda_model = LdaModel(corpus=corpus, id2word=dictionary, num_topics=num_topics, random_state=42)
 
-    # Print the topics and the top words for each topic
-    for topic_num in range(num_topics):
-        print(f"Topic #{topic_num + 1}:")
-        print(lda_model.print_topic(topic_num, topn=10))
-        print()
+    if st.button('Print topic and top words for each topic'):
+        # Print the topics and the top words for each topic
+        for topic_num in range(num_topics):
+            st.write(f"Topic #{topic_num + 1}:")
+            st.write(lda_model.print_topic(topic_num, topn=10))
+            st.write()
 
     # Calculate coherence score to evaluate the model
     coherence_model_lda = CoherenceModel(model=lda_model, texts=key_phrases, dictionary=dictionary, coherence='c_v')
