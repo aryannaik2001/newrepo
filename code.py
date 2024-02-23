@@ -102,6 +102,33 @@ def topic_modelling():
     from gensim.models import LdaModel
     from gensim.models import CoherenceModel
 
+    
+    # from prev topic
+    nltk.download('stopwords')
+    nltk.download('punkt')
+    from tqdm import tqdm
+    from rake_nltk import Rake
+
+    # Initialize RAKE
+    r = Rake()
+
+    # Initialize an empty list to store extracted key phrases
+    key_phrases_list = []
+
+    # Iterate over each review in the 'REVIEW_CONTENT' column
+    for review in tqdm(df['REVIEW_CONTENT']):
+        # Extract key phrases from the review
+        r.extract_keywords_from_text(review)
+        key_phrases = r.get_ranked_phrases()
+
+        # Append key phrases to the list
+        key_phrases_list.append(key_phrases)
+
+    # Add the list of key phrases to the DataFrame
+    df['KEY_PHRASES'] = key_phrases_list
+
+    
+    # now new code starts
     # Create a dictionary representation of the key phrases
     key_phrases = df['KEY_PHRASES'].tolist()
     dictionary = Dictionary(key_phrases)
