@@ -11,7 +11,7 @@ gensim
 rake_nltk
 vaderSentiment
 scipy
-multiprocessing
-textblob
 torch
+textblob
+multiprocessing
 tensorrt==8.6.1
