@@ -160,6 +160,44 @@ def topic_modelling():
 # Page 4: Sentiment analysis
 def sentiment_analysis():
     st.title('Sentiment Analysis')
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    from transformers import AutoTokenizer, AutoModelForSequenceClassification
+    from scipy.special import softmax
+    from sklearn.metrics import accuracy_score
+    from multiprocessing import Pool
+    from transformers import AutoTokenizer, AutoModelForSequenceClassification
+    from scipy.special import softmax
+
+    # Initialize the SentimentIntensityAnalyzer
+    analyzer = SentimentIntensityAnalyzer()
+
+    def analyze_sentiment_vader(review):
+        sentiment_score = analyzer.polarity_scores(review)['compound']
+        if sentiment_score > 0.05:
+            return 1  # Positive
+        elif sentiment_score < -0.05:
+            return -1  # Negative
+        else:
+            return 0  # Neutral
+
+    df['VaderSentiment'] = df['REVIEW_CONTENT'].apply(analyze_sentiment_vader)
+
+    # Print the counts of each sentiment
+    sentiment_counts = df['VaderSentiment'].value_counts()
+    if st.button('Check counts of each sentiment:'):
+        st.write("Positive:", sentiment_counts[1])
+        st.write("Neutral:", sentiment_counts[0])
+        st.write("Negative:", sentiment_counts[-1])
+
+    if st.button('Visualize distribution of vader sentiment labels:'):
+        plt.figure(figsize=(8, 6))
+        plt.bar(['Positive', 'Neutral', 'Negative'], df['VaderSentiment'].value_counts(), color=['green', 'gray', 'red'])
+        plt.xlabel('Sentiment')
+        plt.ylabel('Count')
+        plt.title('Vader Sentiment Analysis Results')
+        st.pyplot(plt)  
+    
+
 
 # Main function to run the app
 def main():
