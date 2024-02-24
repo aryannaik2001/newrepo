@@ -239,17 +239,17 @@ def sentiment_analysis():
     import pandas as pd
     from transformers import pipeline
 
-    reviews = df['REVIEW_CONTENT'].tolist()
+    # reviews = df['REVIEW_CONTENT'].tolist()
 
-    # Load a pre-trained sentiment analysis model
-    sentiment_classifier = pipeline("sentiment-analysis")
+    # # Load a pre-trained sentiment analysis model
+    # sentiment_classifier = pipeline("sentiment-analysis")
     
-    # Perform sentiment analysis on each review
-    sentiments = sentiment_classifier(reviews)
+    # # Perform sentiment analysis on each review
+    # sentiments = sentiment_classifier(reviews)
 
-    # Extract sentiment labels and scores
-    sentiment_labels = [sentiment['label'] for sentiment in sentiments]
-    sentiment_scores = [sentiment['score'] for sentiment in sentiments]
+    # # Extract sentiment labels and scores
+    # sentiment_labels = [sentiment['label'] for sentiment in sentiments]
+    # sentiment_scores = [sentiment['score'] for sentiment in sentiments]
 
     # Function to analyze sentiment using TextBlob
     def analyze_sentiment(text):
