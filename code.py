@@ -233,7 +233,54 @@ def sentiment_analysis():
         plt.ylabel('Count')
         plt.title('Vader Sentiment Analysis Results')
         st.pyplot(plt)  
+
+    # Textblob
+    from textblob import TextBlob
+    import pandas as pd
+    from transformers import pipeline
+
+    reviews = df['REVIEW_CONTENT'].tolist()
+
+    # Load a pre-trained sentiment analysis model
+    sentiment_classifier = pipeline("sentiment-analysis")
     
+    # Perform sentiment analysis on each review
+    sentiments = sentiment_classifier(reviews)
+
+    # Extract sentiment labels and scores
+    sentiment_labels = [sentiment['label'] for sentiment in sentiments]
+    sentiment_scores = [sentiment['score'] for sentiment in sentiments]
+
+    # Function to analyze sentiment using TextBlob
+    def analyze_sentiment(text):
+        blob = TextBlob(text)
+        # Get polarity score
+        polarity = blob.sentiment.polarity
+        # Classify sentiment based on polarity score
+        if polarity > 0:
+            return 1  # Positive sentiment
+        elif polarity < 0:
+            return -1  # Negative sentiment
+        else:
+            return 0  # Neutral sentiment
+
+    # Apply sentiment analysis to each review and create a new column 'Sentiment'
+    df['Sentiment_Blob'] = df['REVIEW_CONTENT'].apply(analyze_sentiment)
+
+    if st.button('Check textblob value counts'):
+        sentiment_counts = df['Sentiment_Blob'].value_counts()
+        st.write("Positive:", sentiment_counts[1])
+        st.write("Neutral:", sentiment_counts[0])
+        st.write("Negative:", sentiment_counts[-1])
+
+    if st.button('Visualize textblob labels'):
+        plt.figure(figsize=(8, 6))
+        plt.bar(['Positive', 'Neutral', 'Negative'], df['Sentiment_Blob'].value_counts(), color=['green', 'gray', 'red'])
+        plt.xlabel('Sentiment')
+        plt.ylabel('Count')
+        plt.title('Text Blob Analysis Results')
+        st.pyplot(plt)
+            
 
 
 # Main function to run the app
