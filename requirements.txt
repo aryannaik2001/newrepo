@@ -13,5 +13,3 @@ vaderSentiment
 scipy
 torch
 textblob
-multiprocessing
-tensorrt==8.6.1
