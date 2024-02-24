@@ -10,8 +10,8 @@ streamlit
 gensim
 rake_nltk
 vaderSentiment
-tensorrt
 scipy
 multiprocessing
 textblob
 torch
+tensorrt==8.6.1
