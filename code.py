@@ -29,6 +29,11 @@ df.dropna(subset = ['REVIEW_CONTENT'], inplace = True)
 def page_introduction():
     st.title('Welcome to My Streamlit App')
     st.write('This is the introduction page of the Streamlit app.')
+    st.title('EDA:')
+    if(st.button('shape'):
+        st.write(df.shape)
+    if(st.button('describe the dataset')):
+        st.write(df.describe())
 
 # Page 2: Key Phrase Extraction
 def key_phrase():
