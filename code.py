@@ -30,10 +30,42 @@ def page_introduction():
     st.title('Welcome to My Streamlit App')
     st.write('This is the introduction page of the Streamlit app.')
     st.title('EDA:')
-    if(st.button('shape'):
+    if st.button('shape'):
         st.write(df.shape)
-    if(st.button('describe the dataset')):
+    if st.button('describe the dataset'):
         st.write(df.describe())
+
+    if st.button('Product category vs review count'):
+        # Create bar plot
+        plt.figure(figsize=(10, 6))
+        plt.bar(df['PRODUCT_CATEGORY'], df['REVIEW_COUNT'], color='skyblue')
+        
+        # Adding title and labels
+        plt.title('Product Category vs Review Count')
+        plt.xlabel('Product Category')
+        plt.ylabel('Review Count')
+        
+        # Rotate x-axis labels for better readability if needed
+        plt.xticks(rotation=45, ha='right')
+        
+        # Show plot
+        plt.tight_layout()
+        st.pyplot(plt)
+
+    if st.button('Price vs Price Rating'):
+        # Create scatter plot
+        plt.figure(figsize=(8, 6))
+        plt.scatter(df['PRICE'], df['PRICE_RATING'], color='blue', alpha=0.5)
+        
+        # Adding title and labels
+        plt.title('Price vs. Price Rating')
+        plt.xlabel('Price')
+        plt.ylabel('Price Rating')
+        
+        # Show plot
+        plt.grid(True)
+        plt.tight_layout()
+        st.pyplot(plt)
 
 # Page 2: Key Phrase Extraction
 def key_phrase():
